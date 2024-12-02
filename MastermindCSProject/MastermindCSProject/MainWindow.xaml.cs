@@ -48,6 +48,7 @@ namespace MastermindCSProject
         private Color[] colors = { Colors.White, Colors.Red, Colors.Blue, Colors.Green, Colors.Yellow, Colors.Orange };
         private int[] colorIndex = { 0, 0, 0, 0 };
         private string inputName;
+        private string[] highscores = new string[15];
 
 
         public MainWindow()
@@ -135,9 +136,14 @@ namespace MastermindCSProject
             else
             {
                 isGameOver = true;
+                highscores.Append("Naam: " + inputName + "- Aantal pogingen: " + attempts + "- Score: " + score).ToString();
+
                 MessageBox.Show("Game Over! De correcte code was: " + color1 + " " + color2 + " " + color3 + " " + color4, "Game Over!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                ResetGame();
                 
             }
+
+
         }
 
         /// <summary>
@@ -145,6 +151,7 @@ namespace MastermindCSProject
         /// </summary>
         private void ResetGame()
         {
+
             attempts = 1;
             score = 100;
             RandomColors(out color1, out color2, out color3, out color4);
@@ -168,6 +175,7 @@ namespace MastermindCSProject
 
             attemptsList.Clear();
             attemptsListBox.ItemsSource = null;
+            StartGame(inputName);
             StartCountdown();
         }
 
@@ -218,6 +226,23 @@ namespace MastermindCSProject
         private void Close_Click(object sender, RoutedEventArgs e)
         {
            this.Close();
+        }
+
+        private void HighScores_Click(object sender, RoutedEventArgs e)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            foreach (string highscore in highscores)
+            {
+                sb.AppendLine(highscore);
+            }
+            //for (int i = 0; i < highscores.Length - 1; i++) {
+              //  sb.AppendLine(highscores[i].ToString());
+            //}
+
+
+
+            MessageBox.Show(sb.ToString(), "Mastermind Highscores");
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -389,8 +414,11 @@ namespace MastermindCSProject
             if (allCorrect)
             {
                 isGameOver = true;
+                highscores.Append("Naam: " + inputName + "- Aantal pogingen: " + attempts + "- Score: " + score).ToString();
                 MessageBox.Show("Gefeliciteerd! Je hebt de code geraden! Score: " + score + " Pogingen: " + attempts, "Gewonnen!");
                 StopTimer();
+                highscores.Append("Naam: " + inputName + "- Aantal pogingen: " + attempts + "- Score: " + score).ToString();
+
             }
             else if (attempts < 10)
             {

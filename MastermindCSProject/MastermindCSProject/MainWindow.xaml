@@ -44,7 +44,7 @@
             <MenuItem Header="Bestand">
                 <MenuItem x:Name="NewGame" Header="Nieuw Spel" Click="Window_Loaded">
                 </MenuItem>
-                <MenuItem x:Name="HighScores" Header="High Scores">
+                <MenuItem x:Name="HighScores" Header="High Scores" Click="HighScores_Click">
                 </MenuItem>
                 <MenuItem x:Name="Close" Header="Afsluiten" Click="Close_Click">
                 </MenuItem>
