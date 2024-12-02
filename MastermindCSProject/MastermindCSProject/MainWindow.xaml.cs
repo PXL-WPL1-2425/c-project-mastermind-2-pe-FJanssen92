@@ -120,20 +120,8 @@ namespace MastermindCSProject
         private void StopTimer()
         {
             timer.Stop();
-            if (isGameOver)
-            {
-                MessageBoxResult result = MessageBox.Show("Wil je nog een keer spelen?", "Einde Spel!", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (result == MessageBoxResult.No)
-                {
-                    this.Close();
-                }
-                else
-                {
-                    ResetGame();
-                }
-                return;
-            }
-
+            
+               
             if (attempts < 10)
             {
                 attempts++;
@@ -148,16 +136,7 @@ namespace MastermindCSProject
             {
                 isGameOver = true;
                 MessageBox.Show("Game Over! De correcte code was: " + color1 + " " + color2 + " " + color3 + " " + color4, "Game Over!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                MessageBoxResult result = MessageBox.Show("Wil je nog een keer spelen?", "Einde Spel!", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-                if (result == MessageBoxResult.No)
-                {
-                    this.Close();
-                }
-                else
-                {
-                    ResetGame();
-                }
+                
             }
         }
 
@@ -236,9 +215,14 @@ namespace MastermindCSProject
             ellipse.Fill = new SolidColorBrush(colors[colorIndex[index]]);
         }
 
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+           this.Close();
+        }
+
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-          MessageBoxResult close = MessageBox.Show("Bent u zeker dat u het spel wilt verlaten?", "Afsluiten", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult close = MessageBox.Show("Bent u zeker dat u het spel wilt verlaten?", "Afsluiten", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             if (close == MessageBoxResult.No)
             {
