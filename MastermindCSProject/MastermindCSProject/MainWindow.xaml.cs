@@ -47,6 +47,7 @@ namespace MastermindCSProject
         private int score = 100;
         private Color[] colors = { Colors.White, Colors.Red, Colors.Blue, Colors.Green, Colors.Yellow, Colors.Orange };
         private int[] colorIndex = { 0, 0, 0, 0 };
+        private string inputName;
 
 
         public MainWindow()
@@ -61,7 +62,20 @@ namespace MastermindCSProject
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            StartGame(inputName);
             StartCountdown();
+           
+        }
+
+        public string StartGame(string name)
+        {
+            do
+            {
+                name = Interaction.InputBox("Geef uw naam in.", "Speler Naam");
+            }
+            while (name.Equals(""));
+
+            return name;
         }
 
         /// <summary>
